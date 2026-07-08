@@ -1,0 +1,25 @@
+# Fichiers système macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+
+# Fichiers sensibles / Clés de sécurité
+*.pem
+*.key
+*.pub
+*.priv
+.env
+.env.*
+secrets.nix
+*.age
+*.gpg
+
+# Dossier de build / Résultats Nix
+result
+result-*
+
+# Metadonnees locales Codex / agents
+.agents/
+skills-lock.json

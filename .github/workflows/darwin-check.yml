@@ -1,0 +1,21 @@
+name: Darwin check
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build nix-darwin config
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Install Determinate Nix
+        uses: DeterminateSystems/nix-installer-action@v22
+
+      - name: Check flake metadata
+        run: nix flake metadata ./nix-darwin
+
+      - name: Build darwin system
+        run: nix build ./nix-darwin#darwinConfigurations.jos-macbook-pro.system --no-link

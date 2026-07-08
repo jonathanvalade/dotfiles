@@ -1,0 +1,13 @@
+[user]
+	name = jonathanvalade
+	email = jonathan.valade@outlook.com
+	
+[core]
+	editor = code --wait
+	excludesfile = ~/.gitignore_global
+
+[init]
+	defaultBranch = main
+
+[color]
+	ui = auto

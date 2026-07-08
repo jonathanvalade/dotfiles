@@ -1,0 +1,19 @@
+# Fichiers système macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+
+# Fichiers sensibles
+*.pem
+*.key
+.env
+.env.*
+secrets.nix
+*.age
+*.gpg
+
+# Dossier de build / Résultats Nix
+result
+result-*
