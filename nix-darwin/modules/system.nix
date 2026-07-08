@@ -1,8 +1,6 @@
 { config, hostname, computerName, ... }:
 
 let
-  showInMenuBar = 18;
-  hideInMenuBar = 24;
   username = config.system.primaryUser;
   screenshotLocation = "/Users/${username}/Documents/Screenshots";
 in
@@ -33,13 +31,13 @@ in
   system.defaults = {
 
     controlcenter = {
-      AirDrop = hideInMenuBar;
+      AirDrop = false;
       BatteryShowPercentage = true;
-      Bluetooth = hideInMenuBar;
-      Display = hideInMenuBar;
-      FocusModes = hideInMenuBar;
-      NowPlaying = hideInMenuBar;
-      Sound = showInMenuBar;
+      Bluetooth = false;
+      Display = false;
+      FocusModes = false;
+      NowPlaying = false;
+      Sound = true;
     };
 
     NSGlobalDomain = {
