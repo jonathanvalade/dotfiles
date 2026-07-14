@@ -30,4 +30,5 @@
     alias ...="cd ../.."
 
     # Nix
-    alias update-mac="darwin-rebuild switch --flake ~/dotfiles/nix-darwin#jos-macbook-pro"
+    alias update-mac='sudo darwin-rebuild switch --flake "$HOME/dotfiles/nix-darwin#jos-macbook-pro"'
+    alias mac-update="update-mac"

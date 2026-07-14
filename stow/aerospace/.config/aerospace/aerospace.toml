@@ -1,6 +1,23 @@
 # General config
     config-version = 2
     start-at-login = true
+    auto-reload-config = true
+
+    enable-normalization-flatten-containers = true
+    enable-normalization-opposite-orientation-for-nested-containers = true
+
+    default-root-container-layout = 'tiles'
+    default-root-container-orientation = 'auto'
+
+    on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+    on-focus-changed = 'move-mouse window-lazy-center'
+
+    persistent-workspaces = ['1', '2', '3', '4', '5', '6', 'Music']
+
+# Application Assignment
+    on-window-detected = [
+        { if = 'test %{app-bundle-id} = com.apple.Music', run = 'move-node-to-workspace Music' },
+    ]
 
 # Workspace / Monitor Assignment
     [workspace-to-monitor-force-assignment]
@@ -10,7 +27,7 @@
     4 = ['secondary', 'main']
     5 = ['secondary', 'main']
     6 = ['secondary', 'main']
-    music = ['secondary', 'main']
+    Music = ['secondary', 'main']
 
 # Gaps
     [gaps]
@@ -33,52 +50,39 @@
     alt-shift-k = 'move up'
     alt-shift-l = 'move right'
 
+    alt-b = 'balance-sizes'
+    alt-n = 'workspace-back-and-forth'
+
     alt-1 = 'workspace 1'
     alt-2 = 'workspace 2'
     alt-3 = 'workspace 3'
     alt-4 = 'workspace 4'
     alt-5 = 'workspace 5'
     alt-6 = 'workspace 6'
-    alt-m = 'workspace music'
+    alt-m = 'workspace Music'
 
-    alt-shift-1 = 'move-node-to-workspace 1'
-    alt-shift-2 = 'move-node-to-workspace 2'
-    alt-shift-3 = 'move-node-to-workspace 3'
-    alt-shift-4 = 'move-node-to-workspace 4'
-    alt-shift-5 = 'move-node-to-workspace 5'
-    alt-shift-6 = 'move-node-to-workspace 6'
-    alt-shift-m = 'move-node-to-workspace music'
+    alt-shift-1 = 'move-node-to-workspace --focus-follows-window 1'
+    alt-shift-2 = 'move-node-to-workspace --focus-follows-window 2'
+    alt-shift-3 = 'move-node-to-workspace --focus-follows-window 3'
+    alt-shift-4 = 'move-node-to-workspace --focus-follows-window 4'
+    alt-shift-5 = 'move-node-to-workspace --focus-follows-window 5'
+    alt-shift-6 = 'move-node-to-workspace --focus-follows-window 6'
+    alt-shift-m = 'move-node-to-workspace --focus-follows-window Music'
 
     alt-tab = 'focus-monitor next'
-    alt-shift-tab = 'move-node-to-monitor next'
+    alt-shift-tab = 'move-node-to-monitor --focus-follows-window next'
 
     alt-f = 'fullscreen'
-    alt-e = 'layout tiling floating toggle'
+    alt-e = 'layout tiling floating'
+    alt-a = 'layout tiles accordion'
     alt-r = 'mode resize'
-    cmd-q = 'close --quit-if-last-window'
+    alt-q = 'close'
 
     [mode.resize.binding]
     h = 'resize width -50'
     j = 'resize height +50'
     k = 'resize height -50'
     l = 'resize width +50'
+    b = 'balance-sizes'
     enter = 'mode main'
-    escape = 'mode main'
-
-# Window Rules
-    # Godot
-        [[on-window-detected]]
-        if.app-id = 'org.godotengine.godot'
-        if.window-title-not-contains = 'Godot Engine - '
-        run = 'layout floating'
-
-        [[on-window-detected]]
-        if.app-id = 'org.godotengine.godot'
-        if.window-title-contains = 'Project Manager'
-        run = 'layout floating'
-
-    # Blender
-        [[on-window-detected]]
-        if.app-id = 'org.blendernetwork.blender'
-        if.window-title-contains = 'Render'
-        run = 'layout floating'
+    esc = 'mode main'

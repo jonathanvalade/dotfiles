@@ -1,7 +1,7 @@
 { ... }:
 
 let
-  username = "jonathan.valade";
+  username = "jonathanvalade";
 in
 {
   system.stateVersion = 7;

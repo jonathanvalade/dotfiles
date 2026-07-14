@@ -1,4 +1,4 @@
-{ config, hostname, computerName, ... }:
+{ config, lib, hostname, computerName, ... }:
 
 let
   username = config.system.primaryUser;
@@ -32,12 +32,11 @@ in
 
     controlcenter = {
       AirDrop = false;
-      BatteryShowPercentage = true;
       Bluetooth = false;
       Display = false;
       FocusModes = false;
       NowPlaying = false;
-      Sound = true;
+      Sound = false;
     };
 
     NSGlobalDomain = {
@@ -57,10 +56,6 @@ in
       mru-spaces = false;
       orientation = "bottom";
       persistent-apps = [
-        "/Applications/Safari.app"
-        "/System/Applications/Calendar.app"
-        "/Applications/Ghostty.app"
-        "/Applications/Visual Studio Code.app"
       ];
       show-recents = false;
       tilesize = 48;
@@ -106,11 +101,20 @@ in
     };
   };
 
-  system.activationScripts.screenshotFolder.text = ''
+  system.activationScripts.postActivation.text = lib.mkAfter ''
+    echo >&2 "Creating user folders..."
     /usr/bin/install -d -o ${username} -g staff "${screenshotLocation}"
-  '';
-
-  system.activationScripts.developerFolder.text = ''
     /usr/bin/install -d -o ${username} -g staff "/Users/${username}/Developer"
+
+    echo >&2 "Configuring Finder list icon size..."
+    finderPreferences="/Users/${username}/Library/Preferences/com.apple.finder.plist"
+
+    if [[ -f "$finderPreferences" ]]; then
+      /usr/libexec/PlistBuddy \
+        -c "Set :StandardViewSettings:ListViewSettings:iconSize 32" \
+        -c "Set :StandardViewSettings:ExtendedListViewSettingsV2:iconSize 32" \
+        "$finderPreferences"
+      /usr/sbin/chown ${username}:staff "$finderPreferences"
+    fi
   '';
 }

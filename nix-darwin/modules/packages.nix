@@ -12,9 +12,10 @@
 
   homebrew = {
     enable = true;
+    global.autoUpdate = false;
     onActivation = {
       cleanup = "zap";
-      autoUpdate = true;
+      autoUpdate = false;
       upgrade = true;
     };
 
@@ -50,18 +51,23 @@
     casks = [
       # Dev
         "visual-studio-code"
+        "zed"
         "tailscale-app"
         "antigravity"
-        "codex-app"
+        "chatgpt"
         "orbstack"
         "ghostty"
         "claude"
         "github"
+        "google-gemini"
 
       # Productivity
         "nextcloud"
         "raycast"
         "parsec"
+        "clickup"
+        "notion"
+        "slack"
 
       # Browsers
         "google-chrome"
@@ -78,20 +84,21 @@
         "godot"
 
       # Utilities
-        "aerospace"
+        "boring-notch"
         "linearmouse"
+        "aerospace"
         "hiddenbar"
 
       # Desactivate
         # "vibe-island"
         # "zen"
-        # "boring-notch"
         # "bitwarden"
     ];
     
     masApps = {
-      # "Goodnotes" = 1444383602;
-      # "Folder Preview" = 1519948264;
+      "CleanMyKeyboard" = 6468120888;
+      "Goodnotes" = 1444383602;
+      "Xcode" = 497799835;
     };
   };
 }
